@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sort example</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var values = [ 213, 16, 2058, 54, 10, 1965, 57, 9 ];
+
+      values.sort(function(value1,value2){ return value2 - value1; });
+
+      var ok = true;
+      for (var n = 0; n < values.length - 1; n++) if (values[n] < values[n+1]) ok = false;
+      assert(ok,'Array has been reverse sorted.')
+
+    </script>
+  </body>
+</html>

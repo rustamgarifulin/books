@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var outerValue = 'ninja';
+
+      var later;                                                   //#1
+
+      function outerFunction() {
+        var innerValue = 'samurai';                                //#2
+
+        function innerFunction() {                                 //#3
+          assert(outerValue,"I can see the ninja.");               //#3
+          assert(innerValue,"I can see the samurai.");             //#3
+        }                                                          //#3
+
+        later = innerFunction;                                     //#4
+      }
+
+      outerFunction();                                             //#5
+
+      later();                                                     //#6
+
+    </script>
+  </body>
+</html>

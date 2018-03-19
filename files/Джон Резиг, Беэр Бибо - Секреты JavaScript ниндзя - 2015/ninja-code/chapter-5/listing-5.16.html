@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.16</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <style>
+      img { cursor: pointer; }
+      .clickedOn { border: 5px solid red; }
+    </style>
+  </head>
+  <body>
+
+    <img src="../images/ninja-with-pole.png">
+
+    <script type="text/javascript">
+
+      $ = function(){ alert('not jQuery!'); };             //#1
+
+      (function($){                                        //#2
+
+        $('img').on('click',function(event){               //#3
+          $(event.target).addClass('clickedOn');
+        })
+
+      })(jQuery);                                          //#4
+
+    </script>
+  </body>
+</html>
+

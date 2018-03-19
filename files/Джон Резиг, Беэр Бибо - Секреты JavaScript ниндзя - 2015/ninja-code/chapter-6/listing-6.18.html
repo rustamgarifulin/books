@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.18</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function Test() {
+        return this instanceof arguments.callee;
+      }
+
+      assert(!Test(), "We didn't instantiate, so it returns false.");
+      assert(new Test(), "We did instantiate, returning true.");
+
+    </script>
+  </body>
+</html>
+

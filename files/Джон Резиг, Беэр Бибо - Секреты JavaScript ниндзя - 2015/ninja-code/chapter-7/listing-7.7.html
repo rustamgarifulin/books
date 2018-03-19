@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 7.7</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var html = "<b class='hello'>Hello</b> <i>world!</i>";
+
+      var pattern = /<(\w+)([^>]*)>(.*?)<\/\1>/g;              //#1
+
+      var match = pattern.exec(html);
+      console.log(match);
+
+      assert(match[0] == "<b class='hello'>Hello</b>",
+             "The entire tag, start to finish.");
+      assert(match[1] == "b", "The tag name.");
+      assert(match[2] == " class='hello'", "The tag attributes.");
+      assert(match[3] == "Hello", "The contents of the tag.");
+
+      match = pattern.exec(html);
+
+      console.log(match);
+
+      assert(match[0] == "<i>world!</i>",
+             "The entire tag, start to finish.");
+      assert(match[1] == "i", "The tag name.");
+      assert(match[2] == "", "The tag attributes.");
+      assert(match[3] == "world!", "The contents of the tag.");
+
+    </script>
+  </body>
+</html>

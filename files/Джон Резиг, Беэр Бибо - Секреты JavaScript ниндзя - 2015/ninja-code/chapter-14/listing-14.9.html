@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.9</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function clone() {
+        var ret = this.map(function () {
+          if (!jQuery.support.noCloneEvent && !jQuery.isXMLDoc(this)) {
+            var clone = this.cloneNode(true),
+                container = document.createElement("div");
+            container.appendChild(clone);
+            return jQuery.clean([container.innerHTML])[0];
+          }
+          else
+            return this.cloneNode(true);
+        });
+
+        var clone = ret.find("*").andSelf().each(function () {
+          if (this[ expando ] !== undefined)
+            this[ expando ] = null;
+        });
+
+        return ret;
+      }
+
+    </script>
+  </body>
+</html>

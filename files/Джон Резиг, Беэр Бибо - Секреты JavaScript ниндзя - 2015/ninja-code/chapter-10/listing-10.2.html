@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 10.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var katana = {                                            //#1
+        isSharp: true,
+        use: function(){
+          this.isSharp = !this.isSharp;
+        }
+      };
+
+      with (katana) {
+        isSharp = false;                                        //#2
+
+        assert(katana.isSharp === false,                        //#3
+            "properties can be assigned");
+
+        cut = function(){                                       //#4
+          isSharp = false;
+        };
+
+        assert(typeof katana.cut == "function",                 //#5
+            "new properties can be created on the scoped object");
+        assert(typeof window.cut == "function",
+            "new properties are created in the global scope");
+
+      }
+
+    </script>
+  </body>
+</html>
+

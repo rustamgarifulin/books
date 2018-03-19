@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.8</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var div = document.createElement("div");
+
+      if (div.attachEvent && div.fireEvent) {
+        div.attachEvent("onclick", function () {
+          // cloning a node shouldn't copy over any
+          // bound event handlers (ie does this)
+          jquery.support.noCloneEvent = false;
+          div.detachEvent("onclick", arguments.callee);
+        });
+        div.cloneNode(true).fireEvent("onclick");
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 8.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      setTimeout(function repeatMe() {                //#1
+        /* Some long block of code... */              //#1
+        setTimeout(repeatMe, 10);                     //#1
+      }, 10);                                         //#1
+
+      setInterval(function() {                        //#2
+        /* Some long block of code... */              //#2
+      }, 10);                                         //#2
+
+    </script>
+
+  </body>
+</html>

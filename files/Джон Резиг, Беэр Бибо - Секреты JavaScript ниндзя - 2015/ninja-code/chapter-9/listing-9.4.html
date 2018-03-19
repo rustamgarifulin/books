@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 9.4</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function test(a){ return a + a; }                    //#1
+
+      assert(test.toString() ===                           //#2
+             "function test(a){ return a + a; }",          //#2
+             "Function decompiled");                       //#2
+
+    </script>
+  </body>
+</html>

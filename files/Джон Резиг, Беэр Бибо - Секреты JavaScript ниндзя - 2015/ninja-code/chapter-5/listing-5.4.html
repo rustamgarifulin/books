@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.4</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script>
+
+      function Ninja() {                                            //#1
+
+        var feints = 0;                                             //#2
+
+        this.getFeints = function(){                                //#3
+          return feints;                                            //#3
+        };                                                          //#3
+
+        this.feint = function(){                                    //#4
+          feints++;                                                 //#4
+        };                                                          //#4
+      }
+
+      var ninja = new Ninja();                                      //#5
+
+      ninja.feint();                                                //#6
+
+      assert(ninja.feints === undefined,                            //#7
+          "And the private data is inaccessible to us." );          //#7
+
+      assert(ninja.getFeints() == 1,                                //#8
+             "We're able to access the internal feint count." );    //#8
+
+    </script>
+  </body>
+</html>

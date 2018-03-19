@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 12.4</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <form id="testForm" action="/">                       <!--#1-->
+      <input type="text" id="id"/>
+      <input type="text" name="action"/>
+    </form>
+
+    <script>
+      window.onload = function(){
+
+        var form = document.getElementById('testForm');
+
+        assert(form.id === 'testForm',                     //#2
+               "the id property is untouched");
+        assert(form.action === '/',
+               "the action property is untouched");
+
+        assert(form.getAttribute('id') === 'testForm',     //#3
+               "the id attribute is untouched");
+        assert(form.getAttribute('action') === '/',
+               "the action attribute is untouched");
+
+      };
+    </script>
+
+  </body>
+</html>
+

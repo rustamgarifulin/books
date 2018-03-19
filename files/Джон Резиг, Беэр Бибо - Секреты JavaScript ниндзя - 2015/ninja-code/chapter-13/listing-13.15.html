@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 13.15</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="fixup.js"></script>
+    <script type="text/javascript" src="events.js"></script>
+    <script type="text/javascript" src="trigger.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      (function () {
+
+        var isReady = false,                                   //#A Start off assuming that we're not ready
+            contentLoadedHandler;
+
+        function ready() {                                     //#B Function that triggers the ready handler and records that fact
+          if (!isReady) {
+            triggerEvent(document,"ready");
+            isReady = true;
+          }
+        }
+
+        if (document.readyState === "complete") {               //#C If the DOM is already ready by the time we get here, fire the handler
+          ready();
+        }
+
+        if (document.addEventListener) {                       //#D For W3C browsers, create a handler for the DOMContentLoaded event that fires off the ready handler and removes itself
+          contentLoadedHandler = function () {
+            document.removeEventListener(
+                "DOMContentLoaded", contentLoadedHandler, false);
+            ready();
+          };
+
+          document.addEventListener(                             //#E Establish the handler
+              "DOMContentLoaded", contentLoadedHandler, false);
+
+        }
+
+        else if (document.attachEvent) {                        //#F For IE Event Model, create a handler that removes itself and fires the ready handler if the document readyState is complete
+          contentLoadedHandler = function () {
+            if (document.readyState === "complete") {
+              document.detachEvent(
+                  "onreadystatechange", contentLoadedHandler);
+              ready();
+            }
+          };
+
+          document.attachEvent(                                  //#G Establish the handler. Probably late, but is iframe-safe.
+              "onreadystatechange", contentLoadedHandler);
+
+          var toplevel = false;
+          try {
+            toplevel = window.frameElement == null;
+          }
+          catch (e) {
+          }
+
+          if (document.documentElement.doScroll && toplevel) {     //#H If not in an iframe try the scroll check
+            doScrollCheck();
+          }
+        }
+
+        function doScrollCheck() {                                  //#I Scroll check process for legacy IE
+          if (isReady) return;
+          try {
+            document.documentElement.doScroll("left");
+          }
+          catch (error) {
+            setTimeout(doScrollCheck, 1);
+            return;
+          }
+          ready();
+        }
+      })();
+
+    </script>
+  </body>
+</html>

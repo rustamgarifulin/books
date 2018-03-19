@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.9</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      if (!Array.prototype.forEach) {                                //#1
+        Array.prototype.forEach = function(callback, context) {      //#2
+          for (var i = 0; i < this.length; i++) {
+            callback.call(context || null, this[i], i, this);        //#3
+          }
+        };
+      }
+
+      ["a", "b", "c"].forEach(function(value, index, array) {        //#4
+        assert(value,
+               "Is in position " + index + " out of " +
+               (array.length - 1));
+      });
+
+    </script>
+  </body>
+</html>
+

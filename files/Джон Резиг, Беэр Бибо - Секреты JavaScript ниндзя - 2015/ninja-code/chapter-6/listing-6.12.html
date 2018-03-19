@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.12</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      Object.prototype.keys = function() {
+        var keys = [];
+        for (var i in this)
+          if (this.hasOwnProperty(i))                       //#1
+            keys.push(i);
+        return keys;
+      };
+
+      var obj = { a: 1, b: 2, c: 3 };
+
+      assert(obj.keys().length == 3,                        //#2
+          "There are three properties in this object.");
+
+    </script>
+  </body>
+</html>
+

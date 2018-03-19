@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.14</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      Function.prototype.memoized = function(key){
+        this._values = this._values || {};
+        return this._values[key] !== undefined ?
+          this._values[key] :
+          this._values[key] = this.apply(this, arguments);
+      };
+
+      Function.prototype.memoize = function(){
+        var fn = this;                                  //#1
+        return function(){                              //#2
+          return fn.memoized.apply(fn, arguments);
+        };
+      };
+
+      var isPrime = (function(num) {
+        var prime = num != 1;
+        for (var i = 2; i < num; i++) {
+          if (num % i == 0) {
+            prime = false;
+            break;
+          }
+        }
+        return prime;
+      }).memoize();
+
+      assert(isPrime(17),"17 is prime");                //#3
+
+    </script>
+  </body>
+</html>
+

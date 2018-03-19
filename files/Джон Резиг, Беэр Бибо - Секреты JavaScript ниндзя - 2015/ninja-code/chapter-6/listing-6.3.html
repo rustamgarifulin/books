@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function Ninja(){                                         //#1
+        this.swung = true;
+      }
+
+      var ninja = new Ninja();                                  //#2
+
+      Ninja.prototype.swingSword = function(){                  //#3
+        return this.swung;
+      };
+
+      assert(ninja.swingSword(),                                //#4
+             "Method exists, even out of order.");
+
+    </script>
+  </body>
+</html>
+

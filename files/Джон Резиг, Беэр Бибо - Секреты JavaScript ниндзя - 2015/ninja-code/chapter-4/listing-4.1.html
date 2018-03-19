@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 4.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      window.onload =                                 //#1
+        function(){ assert(true, 'power!'); };        //#1
+
+      var ninja = {
+        shout: function(){                            //#2
+          assert(true,"Ninja");                       //#2
+        }                                             //#2
+      };
+
+      ninja.shout();
+
+      setTimeout(
+        function(){ assert(true,'Forever!'); },        //#3
+        500);
+
+    </script>
+  </body>
+</html>

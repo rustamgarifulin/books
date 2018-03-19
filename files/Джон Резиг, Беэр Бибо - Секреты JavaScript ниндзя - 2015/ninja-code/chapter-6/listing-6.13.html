@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.13</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      Number.prototype.add = function(num){                             //#1
+        return this + num;
+      };
+
+      var n = 5;                                                        //#2
+      assert(n.add(3) == 8,
+            "It works when the number is in a variable.");
+
+      assert((5).add(3) == 8,                                           //#3
+             "Also works if a number is wrapped in parentheses.");
+
+      assert(5.add(3) == 8, "What about a simple literal?");            //#4
+
+    </script>
+  </body>
+</html>
+

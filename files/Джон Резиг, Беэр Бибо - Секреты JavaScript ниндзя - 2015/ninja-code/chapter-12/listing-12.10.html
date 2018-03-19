@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 12.10</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      img { height: 188px; }
+    </style>
+  </head>
+  <body>
+
+    <img src="../images/ninja-with-nunchuks.png" style="opacity:.5;">
+
+    <script type="text/javascript">
+
+      var div = document.createElement("div");                 //#1
+      div. setAttribute('style','opacity:.5');
+      var OPACITY_SUPPORTED = div.style.opacity === "0.5";
+
+      assert(OPACITY_SUPPORTED,                                //#2
+             "Opacity is supported.");
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.8</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <button id="test">Click Me!</button>
+
+    <script>
+      function bind(context,name){                                 //#1
+        return function(){                                         //#1
+          return context[name].apply(context,arguments);           //#1
+        };                                                         //#1
+      }                                                            //#1
+
+      var button = {
+        clicked: false,
+        click: function(){
+          this.clicked = true;
+          assert(button.clicked,"The button has been clicked");
+          console.log(this);
+        }
+      };
+
+      var elem = document.getElementById("test");
+      elem.addEventListener("click",bind(button,"click"),false);     //#2
+
+    </script>
+
+  </body>
+</html>
+

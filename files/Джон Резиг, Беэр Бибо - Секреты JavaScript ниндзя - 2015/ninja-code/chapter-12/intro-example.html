@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Intro example</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <img src="../images/ninja-with-nunchuks.png">
+
+    <script type="text/javascript">
+
+      var image = document.getElementsByTagName('img')[0];
+
+      var newSrc = '../images/ninja-with-pole.png';
+
+      image.src = newSrc;
+
+      assert(image.src === newSrc,
+             'the image source is now ' + image.src);
+
+      assert(image.getAttribute('src') === '../images/ninja-with-nunchuks.png',
+             'the image src attribute is ' + image.getAttribute('src'));
+
+    </script>
+  </body>
+</html>
+

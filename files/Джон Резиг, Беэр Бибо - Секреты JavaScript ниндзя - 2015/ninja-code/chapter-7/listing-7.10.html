@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 7.10</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function compress(source) {
+        var keys = {};                                     //#1
+
+        source.replace(
+          /([^=&]+)=([^&]*)/g,
+          function(full, key, value) {                     //#2
+            keys[key] =
+              (keys[key] ? keys[key] + "," : "") + value;
+            return "";
+          }
+        );
+
+        var result = [];                                   //#3
+        for (var key in keys) {                            //#3
+          result.push(key + "=" + keys[key]);              //#3
+        }                                                  //#3
+
+        return result.join("&");                           //#4
+      }
+
+      assert(compress("foo=1&foo=2&blah=a&blah=b&foo=3") ==
+             "foo=1,2,3&blah=a,b",
+             "Compression is OK!");
+
+    </script>
+  </body>
+</html>

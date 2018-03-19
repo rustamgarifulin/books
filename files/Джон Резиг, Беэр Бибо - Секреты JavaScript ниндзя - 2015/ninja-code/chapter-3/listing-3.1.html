@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 3.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function isNimble(){ return true; }                            //#1
+
+      assert(typeof window.isNimble === "function",                  //#2
+            "isNimble() defined");
+      assert(isNimble.name === "isNimble",
+            "isNimble() has a name");
+
+
+      var canFly = function(){ return true; };                       //#3
+
+      assert(typeof window.canFly === "function",                    //#4
+             "canFly() defined");
+      assert(canFly.name === "",
+             "canFly() has no name");
+
+
+      window.isDeadly = function(){ return true; };                  //#5
+
+      assert(typeof window.isDeadly === "function",                  //#6
+             "isDeadly() defined");
+
+      function outer(){                                              //#7
+        assert(typeof inner === "function",
+               "inner() in scope before declaration");
+        function inner(){}
+        assert(typeof inner === "function",
+              "inner() in scope after declaration");
+        assert(window.inner === undefined,
+               "inner() not in global scope");
+      }
+
+      outer();                                                       //#8
+      assert(window.inner === undefined,
+             "inner() still not in global scope");
+
+      window.wieldsSword = function swingsSword() { return true; };  //#9
+
+      assert(window.wieldsSword.name === 'swingsSword',
+             "wieldSword's real name is swingsSword");
+
+    </script>
+  </body>
+</html>

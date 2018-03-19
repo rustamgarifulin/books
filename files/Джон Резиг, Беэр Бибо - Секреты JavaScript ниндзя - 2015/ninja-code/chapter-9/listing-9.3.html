@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 9.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function globalEval(data) {                              //#1
+        data = data.replace(/^\s*|\s*$/g, "");
+        if (data) {
+          var head = document.getElementsByTagName("head")[0] ||
+                     document.documentElement,
+              script = document.createElement("script");       //#2
+
+          script.type = "text/javascript";
+          script.text = data;
+
+          head.appendChild(script);                            //#3
+          head.removeChild(script);                            //#4
+        }
+      }
+
+      window.onload = function() {
+        (function() {
+          globalEval("var test = 5;");
+        })();
+
+        assert(test === 5, "The code was evaluated globally.");
+      };
+
+    </script>
+  </body>
+</html>

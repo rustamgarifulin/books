@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 4.10</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  <head>
+
+  <body>
+
+    <input id="first"/>
+    <input id="second"/>
+
+    <script type="text/javascript">
+
+      var elems = {
+
+        length: 0,                                                //#1
+
+        add: function(elem){                                      //#2
+          Array.prototype.push.call(this, elem);
+        },
+
+        gather: function(id){                                     //#3
+          this.add(document.getElementById(id));
+        }
+      };
+
+      elems.gather("first");                                      //#4
+      assert(elems.length == 1 && elems[0].nodeType,              //#4
+             "Verify that we have an element in our stash");      //#4
+w
+      elems.gather("second");                                     //#4
+      assert(elems.length == 2 && elems[1].nodeType,              //#4
+             "Verify the other insertion");                       //#4
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.14</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function MyArray() {}
+
+      MyArray.prototype = new Array();
+
+      var mine = new MyArray();
+      mine.push(1, 2, 3);
+
+      assert(mine.length == 3,
+             "All the items are in our sub-classed array.");
+      assert(mine instanceof Array,
+             "Verify that we implement Array functionality.");
+
+
+    </script>
+  </body>
+</html>
+

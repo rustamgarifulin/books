@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.17</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function User(first, last){
+        this.name = first + " " + last;
+      }
+
+      var name = "Rukia";                               //#1
+
+      var user = User("Ichigo", "Kurosaki");            //#2
+
+      assert(name == "Rukia",                           //#3
+             "Name was set to Rukia.");
+
+    </script>
+  </body>
+</html>
+

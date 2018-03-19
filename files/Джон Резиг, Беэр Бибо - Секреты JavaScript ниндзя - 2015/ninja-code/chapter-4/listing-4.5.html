@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 4.5</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+    <script type="text/javascript">
+
+      var ninja = {
+        chirp: function signal(n) {                              //#1
+          return n > 1 ? signal(n - 1) + "-chirp" : "chirp";
+        }
+      };
+
+      assert(ninja.chirp(3) == "chirp-chirp-chirp",             //#2
+             "Works as we would expect it to!");
+
+      var samurai = { chirp: ninja.chirp };                     //#3
+
+      ninja = {};                                               //#4
+
+      assert(samurai.chirp(3) == "chirp-chirp-chirp",           //#5
+             "The method correctly calls itself.");
+
+    </script>
+  </body>
+</html>

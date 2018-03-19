@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.7</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <button id="test">Click Me!</button>                             <!--#1-->
+
+    <script>
+      var button = {                                                 //#2
+        clicked: false,
+        click: function(){                                           //#3
+          this.clicked = true;
+          assert(button.clicked,"The button has been clicked");      //#4
+          console.log(this);
+        }
+      };
+
+      var elem = document.getElementById("test");                    //#5
+      elem.addEventListener("click",button.click,false);             //#5
+
+    </script>
+
+  </body>
+</html>
+

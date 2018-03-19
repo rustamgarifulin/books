@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 10.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var use = "other";                                               //#1
+
+      var katana = {                                                   //#2
+        isSharp: true,
+        use: function(){
+          this.isSharp = !this.isSharp;
+        }
+      };
+
+      with (katana) {                                                  //#3
+
+        assert(use !== "other" && typeof use == "function",            //#4
+              "use is a function from the katana object.");
+        assert(this !== katana,
+              "context isn't changed; keeps its original value");
+
+      }
+
+      assert(use  === "other",                                         //#5
+             "outside the with use is unaffected.");
+      assert(typeof isSharp === "undefined",
+             "outside the with the properties don't exist.");
+
+    </script>
+  </body>
+</html>
+

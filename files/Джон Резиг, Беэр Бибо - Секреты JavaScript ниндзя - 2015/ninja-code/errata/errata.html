@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Secrets of the JavaScript Ninja &mdash; errata</title>
+    <!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+
+
+      });
+    </script-->
+    <style>
+      body { font-family: Verdana,Helvetica,sans-serif; font-size: 9pt; background-color: #b79055; margin: 0; padding: 0;}
+      #content { margin: 0 8em; background-color: white; min-height: 500px; min-width: 500px; padding: 1em 2em; }
+      .banner img { display: block; margin: 0 auto; }
+      h1 { font-size: 1.5em; text-align: center; margin-bottom: 1em; }
+      ul.errata li { border: 1px solid #b79055; border-radius: 1em; padding: 1em; margin: 0.5em; }
+      ul.errata { list-style-position: inside; margin: 0; padding: 0; }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="content">
+
+      <header class="banner">
+        <div>
+          <img src="banner.png">
+        </div>
+        <h1>Secrets of the JavaScript Ninja &mdash; errata</h1>
+      </header>
+
+      <!--header>
+        <h2>Errata in the 1st Printing</h2>
+      </header-->
+
+      <ul class="errata">
+
+        <li>
+          In chapter 1, on page 10, section 1.4.2:<br>
+          A comment in the code snippet is terminated with <code>*//</code>. It should be terminated with <code>*/</code>.
+        </li>
+
+        <li>
+          In chapter 4, in listing 4.9:<br>
+          The line identified with (1) annotation should read:<br>
+          <code>if (!isPrime.answers) isPrime.answers = {};</code>.
+        </li>
+
+        <li>
+          In chapter 12, in listing 12.7:<br>
+          In the line annotated by callout 5, the property should be <code>borderWidth</code>.<br>
+          This change should be made in the example code file <code>chapter-12/listing-12.7.html</code>.
+        </li>
+
+        <li>
+          On page 161, in listing 7.4:<br>
+          The regular expression passed to match() should be <code>/opacity=([^)]+)/</code><br>
+          It is correct in the example code.
+        </li>
+
+      </ul>
+
+    </div>
+
+  </body>
+
+</html>

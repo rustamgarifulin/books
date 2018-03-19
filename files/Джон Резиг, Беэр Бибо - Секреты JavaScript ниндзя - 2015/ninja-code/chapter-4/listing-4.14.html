@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 4.14</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function multiMax(multi){
+        return multi * Math.max.apply(Math,
+          Array.prototype.slice.call(arguments, 1));           //#1
+      }
+
+      assert(multiMax(3, 1, 2, 3) == 9,
+             "3*3=9 (First arg, by largest.)");
+
+    </script>
+  </body>
+</html>

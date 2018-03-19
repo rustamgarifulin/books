@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 7.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div class="samurai ninja"></div>                          <!--#1-->
+    <div class="ninja samurai"></div>                          <!--#1-->
+    <div></div>                                                <!--#1-->
+    <span class="samurai ninja ronin"></span>                  <!--#1-->
+
+    <script>
+      function findClassInElements(className, type) {
+
+        var elems =                                            //#2
+          document.getElementsByTagName(type || "*");
+
+        var regex =                                            //#3
+          new RegExp("(^|\\s)" + className + "(\\s|$)");
+
+        var results = [];                                      //#4
+
+        for (var i = 0, length = elems.length; i < length; i++)
+          if (regex.test(elems[i].className)) {                //#5
+            results.push(elems[i]);
+          }
+        return results;
+      }
+
+      assert(findClassInElements("ninja", "div").length == 2,
+             "The right amount fo div ninjas was found.");
+      assert(findClassInElements("ninja", "span").length == 1,
+             "The right amount of span ninjas was found.");
+      assert(findClassInElements("ninja").length == 3,
+             "The right amount of ninjas was found.");
+    </script>
+
+  </body>
+</html>
+

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 7.12</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function trim(str) {
+        return str.replace(/^\s\s*/, '')           //#1
+                   .replace(/\s\s*$/, '');         //#1
+      }
+
+      assert(trim(" #id div.class ") == "#id div.class",
+             "Extra whitespace trimmed from a selector string.");
+
+    </script>
+  </body>
+</html>
+

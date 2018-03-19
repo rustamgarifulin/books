@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 15.1</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="test">
+      <b>Hello</b>, I'm a ninja!
+    </div>
+    <div id="test2"></div>
+
+    <script>
+
+      window.onload = function () {
+        var divs = document.querySelectorAll("body > div");
+        assert(divs.length === 2, "Two divs found using a CSS selector.");
+
+        var b = document.getElementById("test")
+            .querySelector("b:only-child");
+        assert(b,
+            "The bold element was found relative to another element.");
+      };
+
+    </script>
+  </body>
+</html>

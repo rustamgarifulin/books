@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 4.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function chirp(n) {                                      //#1
+        return n > 1 ? chirp(n - 1) + "-chirp" : "chirp";      //#1
+      }                                                        //#1
+
+      assert(chirp(3) == "chirp-chirp-chirp",                  //#2
+            "Calling the named function comes naturally.");    //#2
+
+    </script>
+  </body>
+</html>

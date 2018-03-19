@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 13.12</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="event-support.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      (function(){
+
+        var isSubmitEventSupported = isEventSupported("submit");
+
+        function isInForm(elem) {                                      //#1 Function that checks if the passed element is in a form.
+          var parent = elem.parentNode;
+          while (parent) {
+            if (parent.nodeName.toLowerCase() === "form") {
+              return true;
+            }
+            parent = parent.parentNode;
+          }
+          return false;
+        }
+
+        function triggerSubmitOnClick(e) {                              //#2 Handler that will trigger a submit event for clicks on controls with submit semantics.
+          var type = e.target.type;
+          if ((type === "submit" || type === "image") &&
+              isInForm(e.target)) {
+            return triggerEvent(this,"submit");
+          }
+        }
+
+        function triggerSubmitOnKey(e) {                                //#3 Handler that will trigger a submit event for key presses on controls with submit semantics.
+          var type = e.target.type;
+          if ((type === "text" || type === "password") &&
+              isInForm(e.target) && e.keyCode === 13) {
+            return triggerEvent(this,"submit");
+          }
+        }
+
+        this.addSubmit = function (elem, fn) {                        //#4 Defines the special binding function
+
+          addEvent(elem, "submit", fn);                               //#5 Normal binding
+          if (isSubmitEventSupported) return;                     //#5 Short-circuit if browser support is adequate
+
+          // But we need to add extra handlers if we're not on a form
+          // Only add the handlers for the first handler bound
+          if (elem.nodeName.toLowerCase() !== "form" &&               //#6 Checks isf we need piggybacking
+              getData(elem).handlers.submit.length === 1) {
+            addEvent(elem, "click", triggerSubmitOnClick);
+            addEvent(elem, "keypress", triggerSubmitOnKey);
+          }
+
+        };
+
+        this.removeSubmit = function (elem, fn) {                    //#7 Defines the special unbinding function
+
+          removeEvent(elem, "submit", fn);                           //#8 Unbinds as usual
+          if (isEventSupported("submit")) return;                    //#8 Shirt-circuit if browser is adquate
+
+          var data = getData(elem);
+
+          if (elem.nodeName.toLowerCase() !== "form" &&             //#9 Remove piggybacking if all submit handlers gone
+              !data || !data.events || !data.events.submit) {
+            removeEvent(elem, "click", triggerSubmitOnClick);
+            removeEvent(elem, "keypress", triggerSubmitOnKey);
+          }
+        };
+
+      })();
+
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 3.4</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function Ninja() {                                 //#1
+        this.skulk = function() { return this; };        //#1
+      }                                                  //#1
+
+      var ninja1 = new Ninja();                          //#2
+      var ninja2 = new Ninja();                          //#2
+
+      assert(ninja1.skulk() === ninja1,                  //#3
+             "The 1st ninja is skulking");               //#3
+      assert(ninja2.skulk() === ninja2,                  //#3
+             "The 2nd ninja is skulking");               //#3
+
+    </script>
+  </body>
+</html>

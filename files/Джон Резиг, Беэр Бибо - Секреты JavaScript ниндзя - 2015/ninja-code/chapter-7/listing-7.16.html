@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 7.16</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var pattern = /^((\w+)|(\\.))+$/;                       //#1
+
+      var tests = [                                           //#2
+        "formUpdate",
+        "form\\.update\\.whatever",
+        "form\\:update",
+        "\\f\\o\\r\\m\\u\\p\\d\\a\\t\\e",
+        "\\\\\\\\",
+        "form:update"
+      ];
+
+      for (var n = 0; n < tests.length; n++) {                //#3
+        assert(pattern.test(tests[n]),
+               tests[n] + " is a valid identifier" );
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 9.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      assert(eval("5 + 5") === 10,                               //#1
+             "5 and 5 is 10");
+
+      assert(eval("var ninja = 5;") === undefined,               //#2
+             "no value was returned" );
+      assert(ninja === 5, "The variable ninja was created");     //#3
+
+      (function(){
+        eval("var ninja = 6;");                                  //#4
+        assert(ninja === 6,                                      //#4
+              "evaluated within the current scope.");            //#4
+      })();
+
+      assert(window.ninja === 5,                                 //#5
+            "the global scope was unaffected");                  //#5
+      assert(ninja === 5,                                        //#5
+            "the global scope was unaffected");                  //#5
+
+    </script>
+  </body>
+</html>

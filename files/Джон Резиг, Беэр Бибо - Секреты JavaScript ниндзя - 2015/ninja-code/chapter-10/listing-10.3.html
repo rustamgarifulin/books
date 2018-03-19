@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 10.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var ninja = { foo: "bar" },                         //#1
+          value,
+          maxCount = 1000000,
+          n,
+          start,
+          elapsed;
+
+      start = new Date().getTime();                       //#2
+      for (n = 0; n < maxCount; n++) {
+        value = ninja.foo;
+      }
+      elapsed = new Date().getTime() - start;
+      assert(true,"Without with: " + elapsed);
+
+      start = new Date().getTime();                       //#3
+      with(ninja){
+        for (n = 0; n < maxCount; n++) {
+          value = foo;
+        }
+      }
+      elapsed = new Date().getTime() - start;
+      assert(true,"With (with access): " + elapsed);
+
+      start = new Date().getTime();                      //#4
+      with(ninja){
+        for (n = 0; n < maxCount; n++) {
+          foo = n;
+        }
+      }
+      elapsed = new Date().getTime() - start;
+      assert(true,"With (with assignment): " + elapsed);
+
+      start = new Date().getTime();                      //#5
+      with(ninja){
+        for (n = 0; n < maxCount; n++) {
+          value = "no test";
+        }
+      }
+      elapsed = new Date().getTime() - start;
+      assert(true,"With (without access): " + elapsed);
+
+    </script>
+  </body>
+</html>

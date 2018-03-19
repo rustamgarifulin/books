@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 8.3</title>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <table><tbody></tbody></table>
+    <script type="text/javascript">
+
+      var rowCount = 20000;                                       //#1
+      var divideInto = 4;                                         //#1
+      var chunkSize = rowCount/divideInto;                        //#1
+      var iteration = 0;                                          //#1
+
+      var table = document.getElementsByTagName("tbody")[0];
+
+      setTimeout(function generateRows(){
+        var base = chunkSize * iteration;                         //#2
+        for (var i = 0; i < chunkSize; i++) {
+          var tr = document.createElement("tr");
+          for (var t = 0; t < 6; t++) {
+            var td = document.createElement("td");
+            td.appendChild(document.createTextNode((i + base) + "," + t + "," + iteration));
+            tr.appendChild(td);
+          }
+          table.appendChild(tr);
+        }
+        iteration++;                                              //#3
+        if (iteration < divideInto)                               //#3
+          setTimeout(generateRows,0);                         //#3
+      },0);
+
+    </script>
+  </body>
+</html>

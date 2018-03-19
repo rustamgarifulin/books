@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.4</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function root(elem, cur) {
+        return elem.nodeName.toLowerCase() === "table" &&
+            cur.nodeName.toLowerCase() === "tr" ?
+            (elem.getElementsByTagName("tbody")[0] ||
+                elem.appendChild(elem.ownerDocument.createElement("tbody"))) :
+            elem;
+      }
+
+    </script>
+  </body>
+</html>

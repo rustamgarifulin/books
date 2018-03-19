@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 7.9</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function upper(all,letter) { return letter.toUpperCase(); }      //#1
+
+      assert("border-bottom-width".replace(/-(\w)/g,upper)             //#2
+              == "borderBottomWidth",
+          "Camel cased a hyphenated string.");
+
+    </script>
+  </body>
+</html>

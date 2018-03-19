@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 8.2</title>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <table><tbody></tbody></table>
+
+    <script type="text/javascript">
+
+      var tbody = document.getElementsByTagName("tbody")[0];       //#1
+
+      for (var i = 0; i < 20000; i++) {                            //#2
+
+        var tr = document.createElement("tr");                     //#3
+
+        for (var t = 0; t < 6; t++) {                              //#4
+          var td = document.createElement("td");
+          td.appendChild(document.createTextNode(i + "," + t));
+          tr.appendChild(td);
+        }
+
+        tbody.appendChild(tr);                                     //#5
+
+      }
+
+    </script>
+  </body>
+</html>
+

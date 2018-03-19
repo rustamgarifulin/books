@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 12.6</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <form id="testForm" action="/"></form>
+
+    <script>
+      window.onload = function(){
+
+        var input = document.createElement('input');           //#1
+
+        input.type = 'text';                                   //#2
+        assert(input.type == 'text',
+               'Input type is text');
+
+        document.getElementById('testForm')                    //#3
+                .appendChild(input);                           //#3
+
+        input.type = 'hidden';                                 //#4
+        assert(input.type == 'hidden',
+               'Input type changed to hidden');
+
+      };
+    </script>
+
+  </body>
+</html>
+

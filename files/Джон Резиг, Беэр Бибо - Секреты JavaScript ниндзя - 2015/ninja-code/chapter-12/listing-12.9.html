@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 12.9</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      img { float: left; }
+    </style>
+  </head>
+  <body>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Suspendisse congue facilisis dignissim. Fusce sodales,
+      odio commodo accumsan commodo, lacus odio aliquet purus,
+      <img src="../images/ninja-with-pole.png" id="withPole">
+      <img src="../images/ninja-with-shuriken.png"
+           id="withShuriken" style="display:none">
+      vel rhoncus elit sem quis libero. Cum sociis natoque
+      penatibus et magnis dis parturient montes, nascetur
+      ridiculus mus. In hac habitasse platea dictumst. Donec
+      adipiscing urna ut nibh vestibulum vitae mattis leo
+      rutrum. Etiam a lectus ut nunc mattis laoreet at
+      placerat nulla. Aenean tincidunt lorem eu dolor commodo
+      ornare.
+    </div>
+
+    <script type="text/javascript">
+
+      (function(){                                      //#1
+
+        var PROPERTIES = {                              //#2
+          position: "absolute",
+          visibility: "hidden",
+          display: "block"
+        };
+
+        window.getDimensions = function(element) {      //#3
+
+          var previous = {};                            //#4
+          for (var key in PROPERTIES) {
+            previous[key] = element.style[key];
+            element.style[key] = PROPERTIES[key];       //#5
+          }
+
+          var result = {                                //#6
+            width: element.offsetWidth,
+            height: element.offsetHeight
+          };
+
+          for (key in PROPERTIES) {                     //#7
+            element.style[key] = previous[key];
+          }
+          return result;
+        };
+
+      })();
+
+      window.onload = function() {
+
+        setTimeout(function(){
+
+          var withPole = document.getElementById('withPole'),
+              withShuriken = document.getElementById('withShuriken');
+
+          assert(withPole.offsetWidth == 41,                  //#8
+                 "Pole image width fetched; actual: " +
+                 withPole.offsetWidth + ", expected: 41");
+          assert(withPole.offsetHeight == 48,
+                 "Pole image height fetched: actual: " +
+                 withPole.offsetHeight + ", expected 48");
+
+          assert(withShuriken.offsetWidth == 36,              //#9
+                 "Shuriken image width fetched; actual: " +
+                 withShuriken.offsetWidth + ", expected: 36");
+          assert(withShuriken.offsetHeight == 48,
+                 "Shuriken image height fetched: actual: " +
+                 withShuriken.offsetHeight + ", expected 48");
+
+          var dimensions = getDimensions(withShuriken);        //#10
+
+          assert(dimensions.width == 36,                       //#11
+                 "Shuriken image width fetched; actual: " +
+                 dimensions.width + ", expected: 36");
+          assert(dimensions.height == 48,
+                 "Shuriken image height fetched: actual: " +
+                 dimensions.height + ", expected 48");
+
+        },3000);
+
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.5</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function Ninja(){}
+
+      var ninja = new Ninja();
+
+      assert(typeof ninja == "object",                               //#1
+            "The type of the instance is object.");
+      assert(ninja instanceof Ninja,                                 //#2
+             "instance of identifies the constructor." );
+      assert(ninja.constructor == Ninja,                             //#3
+             "The ninja object was created by the Ninja function.");
+
+    </script>
+  </body>
+</html>

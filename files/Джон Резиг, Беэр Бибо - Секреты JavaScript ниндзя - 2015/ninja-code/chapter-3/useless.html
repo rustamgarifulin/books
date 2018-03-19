@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Useless callback example</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+      var text = 'Domo arigato!';
+      function useless(callback) { return callback(); }
+      assert(useless(function(){ return text; }) === text,
+             "The useless function works! " + text);
+    </script>
+  </body>
+</html>

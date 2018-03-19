@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 12.7</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+    <style>
+      div { font-size: 1.8em; border: 0 solid gold; }
+    </style>
+  </head>
+  <body>
+
+    <div style="color:#000;" title="Ninja power!">     <!--#2-->
+      忍者パワー
+    </div>
+
+    <script>
+      window.onload = function(){
+
+        var div = document.getElementsByTagName("div")[0];
+
+        assert(div.style.color == 'rgb(0, 0, 0)' ||       //#3
+               div.style.color == '#000',
+               'color was recorded');
+
+        assert(div.style.fontSize == '1.8em',             //#4
+               'fontSize was recorded');
+
+        assert(div.style.borderWidth == '0',              //#5
+               'borderWidth was recorded');
+
+        div.style.borderWidth = "4px";                    //#6
+
+        assert(div.style.borderWidth == '4px',            //#7
+               'borderWidth was replaced');
+
+      };
+    </script>
+
+  </body>
+</html>

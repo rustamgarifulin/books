@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 3.5</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function juggle() {                                 //#1
+        var result = 0;
+        for (var n = 0; n < arguments.length; n++) {      //#2
+          result += arguments[n];
+        }
+        this.result = result;                             //#3
+      }
+
+      var ninja1 = {};                                    //#4
+      var ninja2 = {};                                    //#4
+
+      juggle.apply(ninja1,[1,2,3,4]);                     //#5
+
+      juggle.call(ninja2,5,6,7,8);                        //#6
+
+      assert(ninja1.result === 10,"juggled via apply");   //#7
+      assert(ninja2.result === 26,"juggled via call");    //#7
+
+    </script>
+  </body>
+</html>
+

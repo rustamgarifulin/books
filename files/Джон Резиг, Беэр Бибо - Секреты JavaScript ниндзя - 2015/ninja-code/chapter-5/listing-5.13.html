@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.13</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      Function.prototype.memoized = function(key){
+        this._values = this._values || {};                            //#1
+        return this._values[key] !== undefined ?                      //#2
+          this._values[key] :
+          this._values[key] = this.apply(this, arguments);
+      };
+
+      function isPrime(num) {                                         //#3
+        var prime = num != 1;
+        for (var i = 2; i < num; i++) {
+          if (num % i == 0) {
+            prime = false;
+            break;
+          }
+        }
+        return prime;
+      }
+
+      assert(isPrime.memoized(5), "The function works; 5 is prime."); //#4
+      assert(isPrime._values[5], "The answer has been cached.");      //#4
+
+    </script>
+  </body>
+</html>
+

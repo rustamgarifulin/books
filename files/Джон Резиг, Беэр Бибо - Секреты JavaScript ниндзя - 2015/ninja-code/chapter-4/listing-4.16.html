@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 4.16</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="add-method.js"></script>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      var ninjas = {                                                    //#1
+       values: ["Dean Edwards", "Sam Stephenson", "Alex Russell"]
+      };
+
+      addMethod(ninjas, "find", function(){                             //#2
+        return this.values;
+      });
+
+      addMethod(ninjas, "find", function(name){                         //#3
+        var ret = [];
+        for (var i = 0; i < this.values.length; i++)
+          if (this.values[i].indexOf(name) == 0)
+            ret.push(this.values[i]);
+        return ret;
+      });
+
+      addMethod(ninjas, "find", function(first, last){                 //#4
+        var ret = [];
+        for (var i = 0; i < this.values.length; i++)
+          if (this.values[i] == (first + " " + last))
+            ret.push(this.values[i]);
+        return ret;
+      });
+
+      assert(ninjas.find().length == 3,                                //#5
+             "Found all ninjas");
+      assert(ninjas.find("Sam").length == 1,
+             "Found ninja by first name");
+      assert(ninjas.find("Dean", "Edwards").length == 1,
+             "Found ninja by first and last name");
+      assert(ninjas.find("Alex", "Russell", "Jr") == null,
+             "Found nothing");
+
+    </script>
+  </body>
+</html>

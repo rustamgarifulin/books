@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.14</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="test"><b>Hello</b>, I'm a ninja!</div>
+
+    <script>
+      window.onload = function () {
+        function getText(elem) {
+          var text = "";
+
+          for (var i = 0; i < elem.childNodes.length; i++) {
+            var cur = elem.childNodes[i];
+
+            // A text node has a nodeType === 3
+            if (cur.nodeType === 3)
+              text += cur.nodeValue;
+
+            // If it's an element we need to recurse further
+            else if (cur.nodeType === 1)
+              text += getText(cur);
+          }
+
+          return text;
+        }
+
+        var b = document.getElementById("test");
+        var text = getText(b);
+
+        assert(text === "Hello, I'm a ninja!",
+            "Examine the text contents of an element.");
+        assert(b.childNodes.length === 2,
+            "An element and a text node exist.");
+      };
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.17</title>
+    <style>
+      div { cursor: pointer;}
+    </style>
+  </head>
+  <body>
+
+    <div>DIV 0</div>
+    <div>DIV 1</div>
+
+    <script>
+      var divs = document.getElementsByTagName("div");  //#1
+
+      for (var i = 0; i < divs.length; i++) {
+        divs[i].addEventListener("click", function() {
+          alert("divs #" + i + " was clicked.");        //#2
+        }, false);
+      }
+    </script>
+  </body>
+</html>
+

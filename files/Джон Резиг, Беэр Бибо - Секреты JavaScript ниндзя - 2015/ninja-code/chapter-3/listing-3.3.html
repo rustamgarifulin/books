@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 3.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function creep(){ return this; }                     //#1
+      assert(creep() === window,                           //#1
+             "Creeping in the window");                    //#1
+
+      var sneak = creep;                                   //#3
+      assert(sneak() === window,                           //#4
+             "Sneaking in the window");                    //#4
+
+      var ninja1 = {                                       //#5
+        skulk: creep                                       //#5
+      };
+      assert(ninja1.skulk() === ninja1,                    //#6
+             "The 1st ninja is skulking");                 //#6
+
+      var ninja2 = {                                       //#7
+        skulk: creep                                       //#7
+      };
+      assert(ninja2.skulk() === ninja2,                    //#8
+             "The 2nd ninja is skulking");                 //#8
+    </script>
+  </body>
+</html>
+

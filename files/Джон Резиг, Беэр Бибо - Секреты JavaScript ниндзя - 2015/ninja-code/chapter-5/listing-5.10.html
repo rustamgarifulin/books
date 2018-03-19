@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.10</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="partial.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      String.prototype.csv = String.prototype.split.partial(/,\s*/);  //#1
+
+      var results = ("Mugan, Jin, Fuu").csv();                        //#2
+
+      assert(results[0]=="Mugan" &&                                   //#3
+             results[1]=="Jin" &&                                     //#3
+             results[2]=="Fuu",                                       //#3
+             "The text values were split properly");                  //#3
+
+    </script>
+  </body>
+</html>

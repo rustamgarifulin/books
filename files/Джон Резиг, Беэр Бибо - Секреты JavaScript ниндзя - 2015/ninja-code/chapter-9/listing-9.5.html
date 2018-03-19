@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 9.5</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function argumentNames(fn) {
+        var found = /^[\s\(]*function[^(]*\(\s*([^)]*?)\s*\)/   //#1
+                    .exec(fn.toString());                       //#1
+        return found && found[1] ?                              //#2
+                 found[1].split(/,\s*/) :                       //#2
+                 [];                                            //#2
+      }
+
+      assert(argumentNames(function(){}).length === 0,          //#3
+             "Works on zero-arg functions.");
+
+      assert(argumentNames(function(x){})[0] === "x",           //#4
+             "Single argument working.");
+
+      var results = argumentNames(function(a,b,c,d,e){});       //#5
+      assert(results[0] == 'a' &&
+             results[1] == 'b' &&
+             results[2] == 'c' &&
+             results[3] == 'd' &&
+             results[4] == 'e',
+             "Multiple arguments working!");
+
+    </script>
+  </body>
+</html>
+

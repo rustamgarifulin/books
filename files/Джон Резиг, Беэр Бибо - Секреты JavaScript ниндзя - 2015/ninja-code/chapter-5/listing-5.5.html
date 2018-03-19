@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.5</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="testSubject"></div>
+
+    <button type="button" id="testButton">Go!</button>
+
+    <script>
+      jQuery('#testButton').click(function(){                          //#1
+
+        var elem$ = jQuery("#testSubject");                            //#2
+
+        elem$.html("Loading...");                                      //#3
+
+        jQuery.ajax({
+          url: "test.html",
+          success: function(html){                                     //#4
+            assert(elem$,
+                  "We can see elem$, via the closure for this callback.");
+            elem$.html(html);
+          }
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

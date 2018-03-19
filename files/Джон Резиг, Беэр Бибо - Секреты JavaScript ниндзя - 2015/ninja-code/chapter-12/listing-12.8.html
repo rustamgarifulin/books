@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 12.8</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div style="color:red;font-size:10px;background-color:#eee;"></div>
+
+    <script>
+      function style(element,name,value){                           //#1
+        name = name.replace(/-([a-z])/ig,                           //#2
+                            function(all,letter){
+                              return letter.toUpperCase();
+                            });
+
+        if (typeof value !== 'undefined') {                        //#3
+          element.style[name] = value;
+        }
+
+        return element.style[name];                                //#4
+      }
+
+      window.onload = function(){
+
+        var div = document.getElementsByTagName('div')[0];
+
+        assert(true,style(div,'color'));
+        assert(true,style(div,'font-size'));
+        assert(true,style(div,'background-color'));
+
+      };
+    </script>
+  </body>
+</html>

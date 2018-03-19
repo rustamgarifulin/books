@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.20</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="subclass.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+      var Person = Object.subClass({                           //#1
+        init: function(isDancing) {
+          this.dancing = isDancing;
+        },
+        dance: function() {
+          return this.dancing;
+        }
+      });
+
+      var Ninja = Person.subClass({                            //#2
+        init: function() {
+          this._super(false);                                  //#3
+        },
+        dance: function() {
+          // Ninja-specific stuff here
+          return this._super();
+        },
+        swingSword: function() {
+          return true;
+        }
+      });
+
+      var person = new Person(true);                            //#4
+      assert(person.dance(),                                    //#4
+             "The person is dancing.");                         //#4
+
+      var ninja = new Ninja();                                  //#5
+      assert(ninja.swingSword(),                                //#5
+             "The sword is swinging.");                         //#5
+      assert(!ninja.dance(),                                    //#5
+             "The ninja is not dancing.");                      //#5
+
+      assert(person instanceof Person,                          //#6
+             "Person is a Person.");                            //#6
+      assert(ninja instanceof Ninja &&                          //#6
+             ninja instanceof Person,                           //#6
+             "Ninja is a Ninja and a Person.");                 //#6
+
+    </script>
+  </body>
+</html>
+

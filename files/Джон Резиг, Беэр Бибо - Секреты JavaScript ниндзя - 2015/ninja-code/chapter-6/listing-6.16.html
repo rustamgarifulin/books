@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.16</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function User(first, last){                         //#1
+        this.name = first + " " + last;
+      }
+
+      var user = User("Ichigo", "Kurosaki");             //#2
+
+      assert(user, "User instantiated");                 //#3
+      assert(user.name == "Ichigo Kurosaki",             //#4
+             "User name correctly assigned");
+
+    </script>
+  </body>
+</html>
+

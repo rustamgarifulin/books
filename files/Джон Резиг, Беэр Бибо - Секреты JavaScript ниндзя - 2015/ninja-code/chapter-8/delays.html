@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Delay test</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      var tickCount = 100;
+      var tick = 0;
+
+      var ticks = [];
+
+      var timerId = setInterval(function(){
+        if (tick == tickCount) { clearInterval(timerId); showResults(); }
+        ticks[tick] = new Date().getTime();
+        tick++;
+      },1);
+
+      function showResults() {
+        //console.log('displaying');
+        var maxDelay = 0;
+        var delays = [];
+        for (var n = 1; n < tickCount; n++) {
+          delays[n] = ticks[n] - ticks[n-1];
+          //console.log('{'+n+'} ' + delays[n]);
+          if (delays[n] > maxDelay) maxDelay = delays[n];
+        }
+        //console.log('max: ' + maxDelay);
+        var counts = [];
+        for (n = 1; n <= maxDelay; n++) counts[n] = 0;
+        for (n = 2; n < tickCount; n++) counts[delays[n]]++;
+        for (n = 1; n <= maxDelay; n++) {
+          var row$ = $('<tr></tr>').appendTo('tbody');
+          $('<td></td>').html(n).appendTo(row$);
+          $('<td></td>').html(counts[n]).appendTo(row$);
+        }
+      }
+
+    </script>
+  </head>
+
+  <body>
+
+    <table><tbody></tbody></table>
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script type="text/tmpl" id="colors">
+      <p>Here's a list of <%= items.length %> items:</p>
+      <ul>
+        <% for (var i=0; i < items.length; i++) { %>
+        <li style='color:<%= colors[i % colors.length] %>'>
+          <%= items[i] %></li>
+        <% } %>
+      </ul>
+      and here's another...
+    </script>
+    <script type="text/tmpl" id="colors2">
+      <p>Here's a list of <%= items.length %> items:</p>
+      <ul>
+        <% for (var i=0; i < items.length; i++) {
+        print("<li style='color:", colors[i % colors.length], "'>",
+        items[i], "</li>");
+        } %>
+      </ul>
+    </script>
+    <script src="tmpl.js"></script>
+    <script>
+      var colorsArray = ['red', 'green', 'blue', 'orange'];
+
+      var items = [];
+      for ( var i = 0; i < 10000; i++ )
+        items.push( "test" );
+
+      function replaceContent(name) {
+        document.getElementById('content').innerHTML =
+            tmpl(name, {colors: colorsArray, items: items});
+      }
+    </script>
+  </head>
+  <body>
+    <input type="button" value="Run Colors"
+           onclick="replaceContent('colors')">
+    <input type="button" value="Run Colors2"
+           onclick="replaceContent('colors2')">
+    <p id="content">Replaced Content will go here</p>
+  </body>
+</html>

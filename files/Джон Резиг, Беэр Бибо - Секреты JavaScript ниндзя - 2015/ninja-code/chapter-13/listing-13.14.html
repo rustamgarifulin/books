@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 13.14</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="fixup.js"></script>
+    <script type="text/javascript" src="events.js"></script>
+    <script type="text/javascript" src="trigger.js"></script>
+    <style>.over { background: yellow; }</style>
+    <script>
+      (function() {
+
+        if (isEventSupported("mouseenter")) {                    //#A Test if the browser supports the mouseenter and mouseleave events
+
+          this.hover = function (elem, fn) {                     //#B In supporting browsers,  add handlers for the supporting events that simply trigger the handler
+            addEvent(elem, "mouseenter", function () {
+              fn.call(elem, "mouseenter");
+            });
+
+            addEvent(elem, "mouseleave", function () {
+              fn.call(elem, "mouseleave");
+            });
+          };
+
+        }
+        else {
+
+          this.hover = function (elem, fn) {                     //#C In non-supporting browsers handle mouseover and mouseout using a handler that detects the "within" condition
+            addEvent(elem, "mouseover", function (e) {
+              withinElement(this, e, "mouseenter", fn);
+            });
+
+            addEvent(elem, "mouseout", function (e) {
+              withinElement(this, e, "mouseleave", fn);
+            });
+          };
+
+        }
+
+        function withinElement(elem, event, type, handle) {      //#D Handler that mimics non-standard behavior
+
+          var parent = event.relatedTarget;                      //#E Get the element we are entering from, or exiting to.
+
+          while (parent && parent != elem) {                     //#F Traverse upward until we hit the top or the hovered element
+            try {
+              parent = parent.parentNode;
+            }
+            catch (e) {                                          //#G In case of error (Firefox XUL elements)
+              break;
+            }
+          }
+          if (parent != elem) {                                  //#H If not exiting or entering the hovered element trigger the handler
+            handle.call(elem, type);
+          }
+        }
+
+      })();
+
+      window.onload = function () {
+        var div = document.getElementsByTagName("div")[0];
+
+        hover(div, function (type) {
+          if (type === "mouseenter") {
+            this.className = "over";
+          }
+          else {
+            this.className = "";
+          }
+        });
+      };
+
+      function isEventSupported(eventName) {
+        var element = document.createElement('div'),
+            isSupported;
+        eventName = 'on' + eventName;
+        isSupported = (eventName in element);
+        if (!isSupported) {
+          element.setAttribute(eventName, 'return;');
+          isSupported = typeof element[eventName] == 'function';
+        }
+        element = null;
+        return isSupported;
+      }
+
+    </script>
+  </head>
+  <body>
+
+    <div>Hover <strong>over</strong> me!</div>
+
+  </body>
+</html>
+

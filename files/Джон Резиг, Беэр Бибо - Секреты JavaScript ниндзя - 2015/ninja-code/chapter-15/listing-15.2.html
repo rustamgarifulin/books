@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 15.2</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="test">
+      <b>Hello</b>, I'm a ninja!
+    </div>
+
+    <script>
+      window.onload = function () {
+        var b = document.getElementById("test").querySelector("div b");
+        assert(b, "Only the last part of the selector matters.");
+      };
+    </script>
+
+  </body>
+</html>

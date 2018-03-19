@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 13.9</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="fixup.js"></script>
+    <script type="text/javascript" src="events.js"></script>
+    <script type="text/javascript" src="trigger.js"></script>
+  </head>
+  <body>
+    <form action="/nowhere">
+      <button type="submit" id="testButton">Test</button>
+    </form>
+
+    <script type="text/javascript">
+
+      var testSubject = document.getElementById('testButton');
+
+      addEvent(testSubject,'click',function(event){ alert('triggered!'); });
+
+      triggerEvent(testSubject,'click');
+
+    </script>
+  </body>
+</html>
+

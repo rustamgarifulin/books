@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 9.6</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var json = '{"name":"Ninja"}';               //#1
+
+      var object = eval("(" + json + ")");         //#2
+
+      assert(object.name === "Ninja",              //#3
+             "My name is Ninja!");                 //#3
+
+    </script>
+  </body>
+</html>

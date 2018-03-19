@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 4.9</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function isPrime(value) {
+        if (!isPrime.answers) isPrime.answers = {};                  //#1
+        if (isPrime.answers[value] != null) {                        //#2
+          return isPrime.answers[value];                             //#2
+        }                                                            //#2
+        var prime = value != 1; // 1 can never be prime
+        for (var i = 2; i < value; i++) {
+          if (value % i == 0) {
+            prime = false;
+            break;
+          }
+        }
+        return isPrime.answers[value] = prime;                       //#3
+      }
+
+      assert(isPrime(5), "5 is prime!" );                            //#5
+      assert(isPrime.answers[5], "The answer was cached!" );         //#5
+
+    </script>
+  </body>
+</html>

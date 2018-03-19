@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 8.4</title>
+    <style type="text/css">
+      #box { position: absolute; background-color: #00bfff; border:  2px solid #00008b; padding: 8px; }
+    </style>
+  </head>
+  <body>
+
+    <div id="box">Hello!</div>
+
+    <script>
+      var timers = {                                                  //#1
+
+        timerID: 0,                                                   //#2
+        timers: [],                                                   //#2
+
+        add: function(fn) {                                           //#3
+          this.timers.push(fn);
+        },
+
+        start: function runNext() {                                   //#4
+          if (this.timerID) return;
+          (function() {
+            if (timers.timers.length > 0) {
+              for (var i = 0; i < timers.timers.length; i++) {
+                if (timers.timers[i]() === false) {
+                  timers.timers.splice(i,1);
+                  i--;
+                }
+              }
+              timers.timerID = setTimeout(runNext, 0);
+            }
+          })();
+        },
+
+        stop: function() {                                             //#5
+          clearTimeout(this.timerID);
+          this.timerID = 0;
+        }
+
+      };
+
+      var box = document.getElementById("box"), x = 0, y = 20;
+
+      timers.add(function() {
+        box.style.left = x + "px";
+        if (++x > 50) return false;
+      });
+
+      timers.add(function() {
+        box.style.top = y + "px";
+        y += 2;
+        if (y > 120) return false;
+      });
+
+      timers.start();
+    </script>
+  </body>
+</html>
+

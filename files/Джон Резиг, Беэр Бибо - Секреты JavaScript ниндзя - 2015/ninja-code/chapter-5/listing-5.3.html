@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 5.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var outerValue = 'ninja';
+      var later;
+
+      function outerFunction() {
+        var innerValue = 'samurai';
+
+        function innerFunction(paramValue) {                       //#1
+          assert(outerValue,"Inner can see the ninja.");
+          assert(innerValue,"Inner can see the samurai.");
+          assert(paramValue,"Inner can see the wakizashi.");       //#2
+          assert(tooLate,"Inner can see the ronin,");              //#2
+        }
+
+        later = innerFunction;
+      }
+
+      assert(!tooLate,"Outer can't see the ronin");                //#3
+
+      var tooLate = 'ronin';                                       //#4
+
+      outerFunction();
+      later('wakizashi');                                          //#5
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 13.1</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+
+      if (document.addEventListener) {                           //#1
+
+        this.addEvent = function (elem, type, fn) {              //#2
+          elem.addEventListener(type, fn, false);
+          return fn;
+        };
+
+        this.removeEvent = function (elem, type, fn) {           //#3
+          elem.removeEventListener(type, fn, false);
+        };
+
+      }
+      else if (document.attachEvent) {                          //#4
+
+        this.addEvent = function (elem, type, fn) {             //#5
+          var bound = function () {
+            return fn.apply(elem, arguments);
+          };
+          elem.attachEvent("on" + type, bound);
+          return bound;
+        };
+
+        this.removeEvent = function (elem, type, fn) {          //#6
+          elem.detachEvent("on" + type, fn);
+        };
+
+      }
+
+      addEvent(window, "load", function () {                       //#1
+
+        var elems = document.getElementsByTagName("div");          //#2
+
+        for (var i = 0; i < elems.length; i++) (function (elem) {
+          var handler = addEvent(elem, "click", function () {      //#3
+            this.style.backgroundColor =
+                this.style.backgroundColor=='' ? 'green' : '';
+            removeEvent(elem, "click", handler);                   //#4
+          });
+        })(elems[i]);
+
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <div title="Click me">私をクリック</div>
+    <div title="but only once">一度だけ</div>
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 12.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div></div>
+
+    <script type="text/javascript">
+
+      window.onload = function(){
+
+        var div = document.getElementsByTagName("div")[0];   //#1
+
+        div.setAttribute("id","ninja-1");                    //#2
+        assert(div.getAttribute('id') === "ninja-1",
+               "Attribute successfully changed");
+
+        div.id = "ninja-2";                                  //#3
+        assert(div.id === "ninja-2",
+               "Property successfully changed");
+
+        div.id = "ninja-3";                                  //#4
+        assert(div.id === "ninja-3",
+               "Property successfully changed");
+        assert(div.getAttribute('id') === "ninja-3",
+               "Attribute successfully changed via property");
+
+        div.setAttribute("id","ninja-4");                    //#5
+        assert(div.id === "ninja-4",
+               "Property successfully changed via attribute");
+        assert(div.getAttribute('id') === "ninja-4",
+               "Attribute successfully changed");
+
+      };
+
+    </script>
+  </body>
+</html>
+

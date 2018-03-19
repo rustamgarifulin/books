@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 11.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div><!-- comment #1--></div>
+    <div><!-- comment #2--></div>
+
+    <script type="text/javascript">
+
+      function getAllElements(name) {
+
+        if (!window.findByTagWorksAsExpected) {                //#1
+          window.findByTagWorksAsExpected = (function(){       //#2
+            var div = document.createElement("div");           //#2
+            div.appendChild(document.createComment("test"));   //#2
+            return div.getElementsByTagName("*").length === 0; //#2
+          })();                                                //#2
+        }
+
+        var allElements = document.getElementsByTagName('*');  //#3
+
+        if (!window.findByTagWorksAsExpected) {                //#4
+          var onlyElements = [];                               //#4
+          for (var n = 0; n < allElements.length; n++) {       //#4
+            if (allElements[n].nodeType === 1)                 //#4
+              onlyElements.push(allElements[n]);               //#4
+          }                                                    //#4
+          allElements = onlyElements;                          //#4
+        }                                                      //#4
+
+        return allElements;
+
+      }
+
+      var elements = getAllElements();                         //#5
+      var elementCount = elements.length;                      //#5
+
+      for (var n = 0; n < elementCount; n++) {                 //#6
+        assert(elements[n].nodeType === 1,                     //#6
+               "Node is an element node");                     //#6
+      }                                                        //#6
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 12.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="testSubject"></div>
+
+    <script type="text/javascript">
+
+      (function(){                                               //#1
+
+        var translations = {                                     //#2
+          "for": "htmlFor",
+          "class": "className",
+          readonly: "readOnly",
+          maxlength: "maxLength",
+          cellspacing: "cellSpacing",
+          rowspan: "rowSpan",
+          colspan: "colSpan",
+          tabindex: "tabIndex",
+          cellpadding: "cellPadding",
+          usemap: "useMap",
+          frameborder: "frameBorder",
+          contenteditable: "contentEditable"
+        };
+
+
+
+        window.attr = function(element,name,value) {              //#3
+          var property = translations[name] || name,
+              propertyExists = typeof element[ property ] !== "undefined";
+
+          if (typeof value !== "undefined") {
+            if (propertyExists) {
+              element[property] = value;
+            }
+            else {
+              element.setAttribute(name,value);
+            }
+          }
+
+          return propertyExists ?
+            element[property] :
+            element.getAttribute(name);
+        };
+
+      })();
+
+      var subject = document.getElementById('testSubject');      //#4
+      assert(attr(subject,'id') === 'testSubject',
+             "id value fetched");
+
+      assert(attr(subject,'id','other') === 'other',
+           "new id value set");
+      assert(attr(subject,'id') === 'other',
+           "new id value fetched");
+
+      assert(attr(subject,'data-custom','whatever') ==='whatever',
+             "custom attribute set");
+      assert(attr(subject,'data-custom') === 'whatever',
+             "custom attribute fetched");
+
+
+    </script>
+  </body>
+</html>
+

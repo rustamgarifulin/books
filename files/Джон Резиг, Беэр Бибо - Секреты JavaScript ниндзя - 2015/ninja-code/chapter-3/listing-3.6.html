@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 3.6</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function forEach(list,callback) {                   //#1
+        for (var n = 0; n < list.length; n++) {
+          callback.call(list[n],n);                       //#2
+        }
+      }
+
+      var weapons = ['shuriken','katana','nunchucks']     //#3
+
+      forEach(                                             //#4
+          weapons,
+        function(index){
+          assert(this == weapons[index],
+                 "Got the expected value of " + weapons[index]);
+        }
+      );
+
+    </script>
+  </body>
+</html>

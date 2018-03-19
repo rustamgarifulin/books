@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 4.3</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      var ninja = {
+        chirp: function(n) {
+          return n > 1 ? ninja.chirp(n - 1) + "-chirp" : "chirp";
+        }
+      };
+
+      assert(ninja.chirp(3) == "chirp-chirp-chirp",
+            "An object property isn't too confusing, either.");
+
+    </script>
+  </body>
+</html>

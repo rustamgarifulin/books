@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 7.1</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function isThisAZipCode(candidate) {
+        if (typeof candidate !== "string" ||                  //#1
+            candidate.length != 10) return false;             //#1
+        for (var n = 0; n < candidate.length; n++) {
+          var c = candidate[n];
+          switch (n) {                                        //#2
+            case 0: case 1: case 2: case 3: case 4:
+            case 6: case 7: case 8: case 9:
+            if (c < '0' || c > '9') return false;
+            break;
+            case 5:
+              if (c != '-') return false;
+              break;
+          }
+        }
+        return true;                                          //#3
+      }
+
+    </script>
+  </body>
+</html>

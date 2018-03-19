@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 13.8</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="fixup.js"></script>
+    <script type="text/javascript" src="events.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      addEvent(window, "load", function () {                      //#1
+
+        var subjects = document.getElementsByTagName("div");      //#2
+
+        for (var i = 0; i < subjects.length; i++) (function (elem) {
+
+          addEvent(elem, "mouseover", function(e) {               //#3
+            this.style.backgroundColor = "red";
+          });
+
+          addEvent(elem, "click", function handler(e) {            //#4
+            this.style.backgroundColor = "green";
+            removeEvent(elem,"click",handler);
+          });
+
+        })(subjects[i]);
+
+      });
+    </script>
+
+    <div id="testSubject1" title="Click once">一度クリックします</div>
+    <div id="testSubject2" title="mouse over">マウス</div>
+    <div id="testSubject3" title="many times">何度も</div>
+
+  </body>
+</html>

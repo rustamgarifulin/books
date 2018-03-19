@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 3.21</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function merge(root){                                   //#1
+        for (var i = 1; i < arguments.length; i++) {
+          for (var key in arguments[i]) {
+            root[key] = arguments[i][key];
+          }
+        }
+        return root;
+      }
+
+      var merged = merge(                                     //#2
+        {name: "Batou"},                                      //#2
+        {city: "Niihama"});                                   //#2
+
+      assert(merged.name == "Batou",                          //#3
+             "The original name is intact.");                 //#3
+      assert(merged.city == "Niihama",                        //#3
+             "And the city has been copied over.");           //#3
+
+    </script>
+  </body>
+</html>

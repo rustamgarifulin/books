@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.3</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="root.js"></script>
+  </head>
+  <body>
+
+    <div id="test"><b>Hello</b>, I'm a ninja!</div>
+    <div id="test2"></div>
+
+    <script>
+
+      function getNodes(htmlString,doc,fragment) {
+
+        var map = {
+          "<td":[3, "<table><tbody><tr>", "</tr></tbody></table>"],
+          "<th":[3, "<table><tbody><tr>", "</tr></tbody></table>"],
+          "<tr":[2, "<table><thead>", "</thead></table>"],
+          "<option":[1, "<select multiple='multiple'>", "</select>"],
+          "<optgroup":[1, "<select multiple='multiple'>", "</select>"],
+          "<legend":[1, "<fieldset>", "</fieldset>"],
+          "<thead":[1, "<table>", "</table>"],
+          "<tbody":[1, "<table>", "</table>"],
+          "<tfoot":[1, "<table>", "</table>"],
+          "<colgroup":[1, "<table>", "</table>"],
+          "<caption":[1, "<table>", "</table>"],
+          "<col":[2, "<table><tbody></tbody><colgroup>", "</colgroup></table>"],
+          "<link":[3, "<div></div><div>", "</div>"]
+        };
+
+        var tagName = htmlString.match(/<\w+/), //#2
+            mapEntry = tagName ? map[tagName[0]] : null;
+        if (!mapEntry) mapEntry = [0, "", ""];
+        var div = (doc || document).createElement("div");
+        div.innerHTML = mapEntry[1] + htmlString + mapEntry[2];
+        while (mapEntry[0]--) div = div.lastChild;
+
+        if (fragment) {
+          while (div.firstChild) {
+            fragment.appendChild(div.firstChild);
+          }
+        }
+
+        return div.childNodes;
+      }
+
+
+      window.onload = function () {
+
+        function insert(elems, args, callback) {
+
+          if (elems.length) {
+            var doc = elems[0].ownerDocument || elems[0],
+                fragment = doc.createDocumentFragment(),
+                scripts = getNodes(args, doc, fragment),
+                first = fragment.firstChild;
+
+            if (first) {
+              for (var i = 0; elems[i]; i++) {
+                callback.call(root(elems[i], first),
+                    i > 0 ? fragment.cloneNode(true) : fragment);
+              }
+            }
+          }
+        }
+
+        var divs = document.getElementsByTagName("div");
+
+        insert(divs, "<b>Name:</b>", function(fragment) {
+          this.appendChild(fragment);
+        });
+
+        insert(divs, "<span>First</span> <span>Last</span>",
+               function(fragment) {
+                  this.parentNode.insertBefore(fragment, this);
+                });
+
+      };
+
+    </script>
+
+  </body>
+</html>

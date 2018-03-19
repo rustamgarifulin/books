@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 9.8</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="gloablEval.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <script>
+      window.onload = function(){
+        var scripts = document.getElementsByTagName("script"); //#1
+        for (var i = 0; i < scripts.length; i++) {             //#2
+          if (scripts[i].type == "x/onload") {                 //#2
+            globalEval(scripts[i].innerHTML);                  //#2
+          }
+        }
+      };
+    </script>
+
+    <script type="x/onload">
+      assert(true,"Executed on page load");                    //#3
+    </script>
+
+  </body>
+</html>

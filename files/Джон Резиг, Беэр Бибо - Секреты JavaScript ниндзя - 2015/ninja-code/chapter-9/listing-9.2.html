@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 9.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var ninja = eval("({name:'Ninja'})");             //#1
+      assert(ninja != undefined,"the ninja was created");
+      assert(ninja.name === "Ninja",
+             "and with the expected property");
+
+      var fn = eval("(function(){return 'Ninja';})");   //#2
+      assert(typeof fn === 'function',
+             "the function was created");
+      assert(fn() === "Ninja",
+             "and returns expected value" );
+
+      var ninja2 = eval("{name:'Ninja'}");               //#3
+      assert(ninja2 != undefined,"ninja2 was created");
+      assert(ninja2.name === "Ninja",
+          "and with the expected property");
+    </script>
+  </body>
+</html>

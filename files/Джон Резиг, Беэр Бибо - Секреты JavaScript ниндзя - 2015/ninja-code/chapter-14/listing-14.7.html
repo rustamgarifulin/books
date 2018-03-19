@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.7</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function evalScript(elem) {
+        if (elem.src)
+          jQuery.ajax({
+            url:elem.src,
+            async:false,
+            dataType:"script"
+          });
+
+        else
+          jQuery.globalEval(elem.text || "");
+
+        if (elem.parentNode)
+          elem.parentNode.removeChild(elem);
+      }
+
+    </script>
+  </body>
+</html>

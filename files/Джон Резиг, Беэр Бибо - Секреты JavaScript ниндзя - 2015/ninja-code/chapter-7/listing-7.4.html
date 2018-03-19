@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 7.4</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="opacity"
+         style="opacity:0.5;filter:alpha(opacity=50);">      <!--#1-->
+    </div>                                                   <!--#1-->
+
+    <script>
+      function getOpacity(elem) {
+        var filter = elem.style.filter;
+        return filter ?                                      //#2
+        filter.indexOf("opacity=") >= 0 ?
+            (parseFloat(filter.match(/opacity=([^)]+)/)[1]) / 100) + "" :
+            "" :
+        elem.style.opacity;
+      }
+
+      window.onload = function() {
+        assert(
+            getOpacity(document.getElementById("opacity")) == "0.5",
+            "The opacity of the element has been obtained.");
+      };
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 7.8</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      var pattern = /((?:ninja-)+)sword/;                     //1
+
+      var ninjas = "ninja-ninja-sword".match(pattern);
+
+      assert(ninjas.length == 2,"Only one capture was returned.");
+      assert(ninjas[1] == "ninja-ninja-",
+             "Matched both words, without any extra capture.");
+
+    </script>
+  </body>
+</html>

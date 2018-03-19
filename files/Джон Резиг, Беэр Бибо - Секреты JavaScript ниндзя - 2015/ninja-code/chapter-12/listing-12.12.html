@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listing 12.12</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <style type="text/css">
+      div {
+        background-color: #ffc; display: inline; font-size: 1.8em;
+        border: 1px solid crimson; color: green;
+      }
+    </style>
+
+    <div style="color:crimson;" id="testSubject" title="Ninja power!">     <!--#2-->
+      忍者パワー
+    </div>
+
+    <script type="text/javascript">
+
+      function fetchComputedStyle(element,property) {                       //#3
+
+        if (window.getComputedStyle) {
+
+          var computedStyles = window.getComputedStyle(element);            //#4
+
+          if (computedStyles) {                                             //#5
+            property = property.replace(/([A-Z])/g,'-$1').toLowerCase();
+            return computedStyles.getPropertyValue(property);
+          }
+        }
+
+        else if (element.currentStyle) {                                    //#6
+          property = property.replace(
+            /-([a-z])/ig,
+            function(all,letter){ return letter.toUpperCase(); });
+          return element.currentStyle[ property ];
+        }
+
+      }
+
+      window.onload = function(){
+
+        var div = document.getElementsByTagName("div")[0];
+
+        assert(true,                                                         //#7
+               "background-color: " +
+               fetchComputedStyle(div,'background-color'));
+        assert(true,
+               "display: " +
+               fetchComputedStyle(div,'display'));
+        assert(true,
+               "font-size: " +
+               fetchComputedStyle(div,'fontSize'));
+        assert(true,
+               "color: " +
+               fetchComputedStyle(div,'color'));
+        assert(true,
+               "border-top-color: " +
+               fetchComputedStyle(div,'borderTopColor'));
+        assert(true,
+               "border-top-width: " +
+               fetchComputedStyle(div,'border-top-width'));
+
+      };
+
+
+    </script>
+  </body>
+</html>

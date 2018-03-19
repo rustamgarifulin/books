@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 6.6</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function Ninja(){}
+      var ninja = new Ninja();
+      var ninja2 = new ninja.constructor();                 //#1
+
+      assert(ninja2 instanceof Ninja, "It's a Ninja!");     //#2
+
+      assert(ninja !== ninja2, "But not the same Ninja!");  //#3
+
+    </script>
+  </body>
+</html>
+

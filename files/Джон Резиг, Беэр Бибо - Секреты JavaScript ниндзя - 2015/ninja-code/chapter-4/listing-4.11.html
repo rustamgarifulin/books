@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 4.11</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function smallest(array){                         //#1
+        return Math.min.apply(Math, array);             //#1
+      }                                                 //#1
+
+      function largest(array){                          //#2
+        return Math.max.apply(Math, array);             //#2
+      }                                                 //#2
+
+      assert(smallest([0, 1, 2, 3]) == 0,               //#3
+             "Located the smallest value.");            //#3
+      assert(largest([0, 1, 2, 3]) == 3,                //#3
+             "Located the largest value.");             //#3
+
+    </script>
+  </body>
+</html>
