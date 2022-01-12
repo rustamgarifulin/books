@@ -4,7 +4,8 @@
 
 ## To Do:
 * [ ] Переименовать по единому шаблону и убрать дубли;
-* [x] ~~Создать веб-страницу с превьюхами, описаниями и фильтром по этим самым книгам;~~ Это не надо.
+* [ ] Обложки(?);
+* [x] ~~Создать веб-страницу с превьюхами, описаниями и фильтром по этим самым книгам;~~ Это не надо.;
 * [x] Добавить список книг в этот readme.md.
 
 [Addison-Wesley Object Technology Series Grady Booch, James Rumbaugh, Ivar Jacobson - Unified Modelling Language User Guide-Addison-Wesley Professional 1998.pdf](files/(Addison-Wesley%20Object%20Technology%20Series)%20Grady%20Booch,%20James%20Rumbaugh,%20Ivar%20Jacobson%20-%20Unified%20Modelling%20Language%20User%20Guide-Addison-Wesley%20Professional%20(1998).pdf)
