@@ -2,6 +2,8 @@
 
 Сюда буду выгружать скопившиеся книги. Всё это ~~своровал~~скопировал у кого-то еще, а тот еще у кого-то.
 
+Если у вас имеется контект, которым вы ходите поделиться — сделайте PR. Приветствуется актуальный контент — последние версии изданий или тексты, актуальность, которых не зависит от даты публикации. 🫡
+
 ## To Do:
 * [ ] Переименовать по единому шаблону и убрать дубли;
 * [ ] Обложки(?);
@@ -29,11 +31,18 @@ Dean Leffingwell Don Widrig, Перевод санглийского иреда�
 [Architecting Modern Data Platforms](./books/Architecting%20Modern%20Data%20Platforms/architectingmoderndataplatforms.pdf) Jan Kunigk, Ian Buss, Paul Wilkinson & Lars George
 >There’s a lot of information about big data technologies, but splicing these technologies into an end-to-end enterprise data platform is a daunting task not widely covered. With this practical book, you’ll learn how to build big data infrastructure both on-premises and in the cloud and successfully architect a modern data platform.
 
-Architecting Modern Data Platforms
-
-###### Template
 ---
 <img alt="" src="" width="250">
 
 [Title]()
 >Description
+
+###### Template
+```
+---
+<img alt="" src="" width="250">
+
+[Title]()
+>Description
+
+```
